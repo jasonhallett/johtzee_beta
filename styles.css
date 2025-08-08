@@ -385,7 +385,9 @@ button.glow-active {
   z-index: 1001 !important;
 }
 
-/* --- Responsive Layout for Mobile Phones & Tablets (<= 768px) --- */
+/* --- Responsive Layout for Mobile Phones & Tablets --- */
+
+/* Tablet Layout: Targets devices like iPads (<= 768px) */
 @media (max-width: 768px) {
   .container {
     margin: 10px;
@@ -395,17 +397,11 @@ button.glow-active {
   #player-section {
     padding: 15px;
     max-width: 100%;
-  }
-
-  /* Center everything on the setup screen */
-  #player-section, #player-section h2, #player-section #player-name, #player-section .options, #player-list {
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   #jotzee-logo-setup, #jotzee-logo-game {
-    max-width: 75%;
+    max-width: 65%; /* UPDATED LOGO SIZE */
   }
 
   /* Game UI adjustments */
@@ -416,15 +412,17 @@ button.glow-active {
   
   #main-game-column {
     order: 1; /* Main game area comes first */
+    width: 100%;
   }
 
   #current-player-card-column {
     order: 2; /* Featured card comes second */
     padding-top: 0;
+    width: 100%;
   }
   
   .featured-card {
-    width: 90%; /* Make the featured scorecard take up more width */
+    width: 90%; /* Featured card is slightly larger on tablets */
     margin: 20px auto;
   }
 
@@ -432,97 +430,60 @@ button.glow-active {
     border-top: none; /* Remove the separator line */
     padding-top: 0;
     margin-top: 0;
+    display: flex;
+    flex-direction: row; /* Ensure scorecards are side-by-side */
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .scorecard {
-    width: calc(50% - 20px); /* Display two scorecards per row on smaller tablets */
+    width: calc(50% - 22px); /* Two scorecards per row on tablets */
   }
 
   /* Dice and buttons scaling */
-  .dice-row {
-    margin: 10px 0;
-  }
-
-  #turn-title-display {
-    font-size: 1.5rem;
-    height: auto;
-  }
-  
-  button {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-  
-  #roll-button {
-    font-size: 1.2rem;
-  }
-
-  .die {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .pip {
-    width: 12px;
-    height: 12px;
-  }
+  .dice-row { margin: 10px 0; }
+  #turn-title-display { font-size: 1.8rem; height: auto; }
+  button { font-size: 0.9rem; padding: 8px 12px; }
+  #roll-button { font-size: 1.2rem; }
+  .die { width: 50px; height: 50px; }
+  .pip { width: 12px; height: 12px; }
 }
 
-/* Specific adjustments for very small screens (e.g., small phones) */
-@media (max-width: 480px) {
-  .scorecard {
-    width: 90%; /* Stack scorecards vertically on very small screens */
-  }
-  #log-buttons {
-    flex-direction: column;
-  }
-  .featured-card {
-    width: 90%;
-  }
-}
-
-/* Mobile-first enhancements to the setup screen for all phones */
+/* Phone Layout: Targets iPhones and other small devices (<= 540px) */
 @media (max-width: 540px) {
-    #setup-section {
-        /* Ensure the logo and form are centered vertically and horizontally */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 0; /* Remove padding for a more compact look */
-    }
-    
-    #player-section {
-        max-width: 95%; /* Adjust width to fit most phone screens */
-        margin: 0; /* Remove margin to use full width of container */
-        padding: 15px;
-    }
-    
-    /* Make the container itself take up more of the screen on small devices */
-    .container {
-        max-width: 95%;
-        margin: 10px auto;
-    }
+  #setup-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
 
-    /* Adjust player list items for smaller screens */
-    .player-list-item {
-        font-size: 1rem;
-        padding: 8px;
-    }
-    
-    /* Adjust logo size to 75% for phones */
-    #jotzee-logo-setup, #jotzee-logo-game {
-        max-width: 75%;
-    }
+  .container, #player-section {
+    max-width: 95%;
+    width: 95%;
+    margin: 10px auto;
+    padding: 15px;
+  }
+  
+  .player-list-item {
+      font-size: 1rem;
+      padding: 8px;
+  }
 
-    /* Adjust featured card and scorecards to 85% width on phones */
-    .featured-card, .scorecard {
-      width: 95%; 
-      margin: 15px auto;
-    }
+  /* On phones, stack all scorecards vertically and make them wider */
+  #scorecard-container {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    #scorecard-container {
-      flex-direction: column; /* Stack all scorecards vertically */
-    }
+  /* THIS IS THE KEY FIX: Make scorecards much wider on phones */
+  .featured-card, .scorecard {
+    width: 95%; /* Use almost the full width of the container */
+    margin: 10px auto;
+  }
+
+  #log-buttons {
+    flex-direction: column; /* Stack log buttons vertically */
+  }
 }
