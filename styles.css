@@ -314,7 +314,7 @@ button.glow-active {
 .modal-body ul { list-style: none; padding: 0; }
 .modal-body li { background: #444; padding: 8px; border-radius: 4px; margin-bottom: 5px; }
 
-/* --- Media Queries for Mobile & Tablet --- */
+/* --- Media Queries for Tablet (up to 768px) --- */
 @media (max-width: 768px) {
   /* Main layout adjustments */
   .container {
@@ -398,5 +398,72 @@ button.glow-active {
   #jotzee-logo-setup,
   #jotzee-logo-game {
     max-width: 300px;
+  }
+}
+
+/* --- Media Queries for Phone (up to 480px) --- */
+@media (max-width: 480px) {
+  /* Hide other scorecards */
+  #scorecard-container {
+    display: none; /* Only show the featured card on phones */
+  }
+
+  /* Adjust game layout for phone to stack columns */
+  #game-layout {
+    flex-direction: column; /* Stack main game column and featured card column */
+    gap: 10px;
+  }
+
+  /* Position current player's scorecard underneath the play area */
+  #current-player-card-column {
+    order: 2; /* Place current player card after the main game column */
+    width: 100%; /* Ensure it takes full width */
+    padding-top: 0; /* Remove top padding as it's now below */
+  }
+
+  #main-game-column {
+    order: 1; /* Place main game column first */
+    width: 100%;
+  }
+
+  .featured-card {
+    width: 95%; /* Adjust width for better fit on very small screens */
+    margin: 10px auto; /* Center the featured card */
+  }
+
+  /* Further reduce button sizes for very small screens */
+  button {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+  #roll-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  #turn-title-display {
+    font-size: 1.5rem;
+    height: 25px;
+  }
+  .die {
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+  }
+  .pip {
+    width: 10px;
+    height: 10px;
+  }
+  .large-dice .die {
+    width: 65px;
+    height: 65px;
+  }
+  .large-dice .pip {
+    width: 13px;
+    height: 13px;
+  }
+
+  #jotzee-logo-setup,
+  #jotzee-logo-game {
+    max-width: 250px;
   }
 }
