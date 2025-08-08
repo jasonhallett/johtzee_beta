@@ -515,7 +515,7 @@ button.glow-active {
 
     /* Adjust featured card and scorecards to 85% width on phones */
     .featured-card, .scorecard {
-      width: 85%; 
+      width: 95%; 
       margin: 15px auto;
     }
 

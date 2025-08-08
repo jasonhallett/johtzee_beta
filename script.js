@@ -1,4 +1,4 @@
-const GAME_VERSION = "1.0.3 8/8/25"; // NEW: Define your game version here
+const GAME_VERSION = "1.0.4 8/8/25"; // NEW: Define your game version here
 
 let isMuted = false;
 let glowInterval;
@@ -18,6 +18,7 @@ function playSound(name) {
     "smallstraight": "sounds/smallstraight.mp3",
     "largestraight": "sounds/largestraight.mp3",
     "johtzee": "sounds/johtzee.mp3",
+    "gameover": "sounds/gameover.mp3", // NEW: Add the game over sound
   };
   const file = map[name];
   if (!file) return;
@@ -473,6 +474,7 @@ function rollDice() {
                 </div>
             `;
             
+            playSound('gameover');
             openModal("Game Over", contentHTML, true);
         }
         function handleAITurn() {
