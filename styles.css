@@ -48,7 +48,10 @@ html, body {
     justify-content: center;
     align-items: center;
     padding: 40px 0;
+    min-height: 80vh; /* This will help center the content vertically */
+    box-sizing: border-box;
 }
+
 #player-section {
     background: inherit; /* Match container background */
     border: none;
@@ -81,11 +84,55 @@ html, body {
     align-items: center;
     font-size: 1.1rem;
 }
-.player-list-item button {
-    background: #b22222;
-    color: #fff;
-    border: 1px solid #800000;
+
+/* New delete button styling to look like a die */
+.delete-dice-button {
+  background: linear-gradient(135deg, #b22222 0%, #8b0000 50%, #b22222 100%) !important;
+  box-shadow: 
+    0 0 0 2px #c9a200,
+    0 0 0 4px #ffd700,
+    0 0 10px 1px rgba(255, 215, 0, 0.8),
+    inset 0 0 15px rgba(0,0,0,0.6),
+    inset 0 8px 10px rgba(255,255,255,0.4),
+    inset 0 -8px 10px rgba(0,0,0,0.4);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.delete-dice-button:hover {
+    transform: scale(1.1);
+    box-shadow: 
+        0 0 0 2px #c9a200,
+        0 0 0 4px #ffd700,
+        0 0 25px 8px #ffd700,
+        0 0 40px 15px #ff0;
+}
+
+.delete-dice-button::after {
+    content: 'X';
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0 0 5px #000;
+}
+
+
+/* Old style for player list item button is removed to use the new one. */
+.player-list-item button {
+    /* Removed old styles */
+}
+
 
 /* --- Layouts --- */
 #game-layout { display: flex; gap: 20px; align-items: flex-start; }
@@ -414,4 +461,46 @@ button.glow-active {
   .featured-card {
     width: 90%;
   }
+}
+
+/* Mobile-first enhancements to the setup screen for all phones */
+@media (max-width: 540px) {
+    #setup-section {
+        /* Ensure the logo and form are centered vertically and horizontally */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0; /* Remove padding for a more compact look */
+    }
+    
+    #player-section {
+        max-width: 95%; /* Adjust width to fit most phone screens */
+        margin: 0; /* Remove margin to use full width of container */
+        padding: 15px;
+    }
+    
+    /* Make the container itself take up more of the screen on small devices */
+    .container {
+        max-width: 95%;
+        margin: 10px auto;
+    }
+
+    /* Adjust player list items for smaller screens */
+    .player-list-item {
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    /* Adjust featured card and scorecards to be 75% wider than previous */
+    .featured-card {
+      width: calc(100% * 1.75 * 0.9); /* Base width (90%) * 1.75 */
+      width: 90%; /* This is a cleaner approach to get a wider card */
+      margin: 15px auto;
+    }
+
+    .scorecard {
+      width: 90%;
+    }
 }

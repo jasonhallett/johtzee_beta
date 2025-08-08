@@ -1,4 +1,4 @@
-const GAME_VERSION = "1.0.2 8/8/25"; // NEW: Define your game version here
+const GAME_VERSION = "1.0.3 8/8/25"; // NEW: Define your game version here
 
 let isMuted = false;
 let glowInterval;
@@ -126,11 +126,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 nameSpan.textContent = p.name;
                 row.appendChild(nameSpan);
                 const del = document.createElement("button");
-                del.textContent = "❌";
-                del.onclick = () => { players.splice(i, 1); renderPlayerList(); renderScorecards(); };
+                // The new button style will use the class to create the 'X'
+                del.className = "delete-dice-button"; 
+                del.textContent = " "; // Set to a space or empty string so the 'X' from CSS is visible
+                del.onclick = () => { players.splice(i, 1); renderPlayerList(); renderScorecards(); updateStartButtonState(); };
                 row.appendChild(del);
                 list.appendChild(row);
             });
+            updateStartButtonState();
         }
         function renderScorecards() {
             const container = $("#scorecard-container");
@@ -292,6 +295,12 @@ document.addEventListener("DOMContentLoaded", () => {
             void turnTitle.offsetWidth; // Trigger a browser reflow
             turnTitle.classList.add('animate-turn');
         }
+        
+        // NEW: Function to check for human player and enable/disable the start button
+        function updateStartButtonState() {
+            const hasHumanPlayer = players.some(p => !p.isAI);
+            $("#start-game").disabled = !hasHumanPlayer;
+        }
 
         function addPlayer() {
             const name = $("#player-name").value.trim();
@@ -302,8 +311,9 @@ document.addEventListener("DOMContentLoaded", () => {
             $("#large-dice-checkbox").checked = false;
             renderPlayerList();
             renderScorecards();
+            updateStartButtonState(); // NEW: Check button state after adding a player
         }
-        const addAIPlayer = () => { const pool = AI_NAMES.filter(n => !new Set(players.filter(p=>p.isAI).map(p=>p.name)).has(n)); const name = pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : "AI Player"; players.push({ name, scores: {}, usedCategories: new Set(), johtzeeBonusCount: 0, isAI: true, needsLargeDice: false }); renderPlayerList(); renderScorecards(); };
+        const addAIPlayer = () => { const pool = AI_NAMES.filter(n => !new Set(players.filter(p=>p.isAI).map(p=>p.name)).has(n)); const name = pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : "AI Player"; players.push({ name, scores: {}, usedCategories: new Set(), johtzeeBonusCount: 0, isAI: true, needsLargeDice: false }); renderPlayerList(); renderScorecards(); updateStartButtonState(); };
         
         function startNewRound() {
             document.querySelectorAll('audio').forEach(audio => { audio.play(); audio.pause(); });
@@ -493,6 +503,7 @@ function rollDice() {
             renderPlayerList();
             renderScorecards();
             closeModal();
+            updateStartButtonState(); // NEW: Check button state on reset
         }
         
         $("#add-player").addEventListener("click", addPlayer);
@@ -509,4 +520,7 @@ function rollDice() {
     
         // Initial setup for the container width
         resetToSetup();
+        
+        // NEW: Initial state of the "Start Game" button is disabled
+        $("#start-game").disabled = true;
 });
