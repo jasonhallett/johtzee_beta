@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Jotzee - BETA</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div id="setup-section">
+      <div id="player-section">
+        <div class="logo-container">
+            <img id="jotzee-logo-setup" src="Logo-BG.jpg" alt="Jotzee Logo"/>
+        </div>
+        <h2>Add Players</h2>
+        <div id="player-list"></div>
+        <input type="text" id="player-name" placeholder="Enter Player Name"/>
+        <div class="options">
+            <label><input type="checkbox" id="large-dice-checkbox"> Large Dice</label>
+        </div>
+        <button id="add-player">Add Player</button>
+        <button id="ai-button">Add AI Player 🤖</button>
+        <button id="start-game">Start Game ▶️</button>
+      </div>
+    </div>
+
+    <div id="game-ui" style="display:none;">
+      <div id="game-layout">
+        <div id="main-game-column">
+            <img id="jotzee-logo-game" src="Logo-BG.jpg" alt="Jotzee Logo"/>
+            <div id="status-bar">
+                <div id="roll-counter"></div>
+            </div>
+            <div id="turn-title-display"></div>
+            <div id="dice-display" class="dice-row"></div>
+            <div id="virtual-roll">
+                <button id="roll-button">Roll Dice</button>
+            </div>
+            <div id="category-buttons"></div>
+        </div>
+        <div id="current-player-card-column"></div>
+      </div>
+      <div id="scorecard-container"></div>
+    </div>
+  </div>
+  
+  <div id="log-modal" class="modal-overlay">
+      <div class="modal-content">
+          <span id="modal-close-btn" class="modal-close">&times;</span>
+          <h2 id="modal-title">Log</h2>
+          <div id="modal-body" class="modal-body"></div>
+          <div id="game-over-buttons" style="display: none; text-align: center; margin-top: 20px;">
+            <button id="play-again-btn">Play Again?</button>
+            <button id="new-game-btn">New Game</button>
+          </div>
+      </div>
+  </div>
+
+  <ul id="history-log" style="display: none;"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
