@@ -323,3 +323,95 @@ button.glow-active {
   border-radius: 5px !important;
   z-index: 1001 !important;
 }
+
+/* --- Responsive Layout for Mobile Phones & Tablets (<= 768px) --- */
+@media (max-width: 768px) {
+  .container {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  #player-section {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  /* Center everything on the setup screen */
+  #player-section, #player-section h2, #player-section #player-name, #player-section .options, #player-list {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Game UI adjustments */
+  #game-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #main-game-column {
+    order: 1; /* Main game area comes first */
+  }
+
+  #current-player-card-column {
+    order: 2; /* Featured card comes second */
+    padding-top: 0;
+  }
+  
+  .featured-card {
+    width: 90%; /* Make the featured scorecard take up more width */
+    margin: 20px auto;
+  }
+
+  #scorecard-container {
+    border-top: none; /* Remove the separator line */
+    padding-top: 0;
+    margin-top: 0;
+  }
+  
+  .scorecard {
+    width: calc(50% - 20px); /* Display two scorecards per row on smaller tablets */
+  }
+
+  /* Dice and buttons scaling */
+  .dice-row {
+    margin: 10px 0;
+  }
+
+  #turn-title-display {
+    font-size: 1.5rem;
+    height: auto;
+  }
+  
+  button {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+  
+  #roll-button {
+    font-size: 1.2rem;
+  }
+
+  .die {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .pip {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Specific adjustments for very small screens (e.g., small phones) */
+@media (max-width: 480px) {
+  .scorecard {
+    width: 90%; /* Stack scorecards vertically on very small screens */
+  }
+  #log-buttons {
+    flex-direction: column;
+  }
+  .featured-card {
+    width: 90%;
+  }
+}
