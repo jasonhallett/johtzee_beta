@@ -50,8 +50,8 @@ html, body {
     padding: 40px 0;
 }
 #player-section {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid #ffd700;
+    background: inherit; /* Match container background */
+    border: none;
     border-radius: 10px;
     padding: 25px;
     width: 100%;
@@ -173,18 +173,14 @@ input { padding: 8px; border-radius: 6px; border: 1px solid #aaa; background: #3
 
 .die {
   width: 70px; height: 70px; margin: 8px; border-radius: 10px; position: relative; cursor: pointer;
-  /* Dark red dice with a stronger, glossy highlight */
   background: linear-gradient(135deg, #b22222 0%, #8b0000 50%, #b22222 100%);
-  
-  /* Multilayered box-shadow for a more dramatic, glistening gold border and glossy face */
   box-shadow: 
-    0 0 0 2px #c9a200, /* Dark gold base border */
-    0 0 0 4px #ffd700, /* Lighter gold outline */
-    0 0 10px 1px rgba(255, 215, 0, 0.8), /* Stronger yellow glow for the glisten effect */
-    inset 0 0 15px rgba(0,0,0,0.6), /* Deeper inner shadow */
-    inset 0 8px 10px rgba(255,255,255,0.4), /* Brighter top-left inner glare for a glossy look */
-    inset 0 -8px 10px rgba(0,0,0,0.4); /* Bottom-right inner shadow for depth */
-
+    0 0 0 2px #c9a200,
+    0 0 0 4px #ffd700,
+    0 0 10px 1px rgba(255, 215, 0, 0.8),
+    inset 0 0 15px rgba(0,0,0,0.6),
+    inset 0 8px 10px rgba(255,255,255,0.4),
+    inset 0 -8px 10px rgba(0,0,0,0.4);
   border: none;
   transition: all 0.2s ease-out;
 }
@@ -195,12 +191,11 @@ input { padding: 8px; border-radius: 6px; border: 1px solid #aaa; background: #3
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  /* Shiny gold pips with more pronounced 3D effect */
   background: radial-gradient(circle at 35% 35%, #fff, #ffeb99, #ffd700);
   box-shadow: 
     inset 0 1px 3px rgba(0,0,0,0.6), 
     0 2px 4px rgba(0,0,0,0.4),
-    0 0 8px rgba(255, 215, 0, 0.7); /* Brighter glow for pips */
+    0 0 8px rgba(255, 215, 0, 0.7);
 }
 
 .die.held {
@@ -208,7 +203,7 @@ input { padding: 8px; border-radius: 6px; border: 1px solid #aaa; background: #3
   box-shadow: 
     0 0 0 2px #c9a200, 
     0 0 0 4px #ffd700, 
-    0 0 25px 8px #ffd700, /* Even more intense glow when held */
+    0 0 25px 8px #ffd700, 
     0 0 40px 15px #ff0,
     inset 0 -3px 5px rgba(0,0,0,0.4), 
     inset 0 4px 5px rgba(255,255,255,0.3);
@@ -245,7 +240,6 @@ input { padding: 8px; border-radius: 6px; border: 1px solid #aaa; background: #3
     margin-bottom: 8px;
 }
 
-/* New glow effect for human players - applied to a single button at a time */
 button.glow-active {
     animation: pulse-gold-static 0.5s forwards;
     background: linear-gradient(180deg, #fff2a8, #ffe175);
@@ -275,8 +269,8 @@ button.glow-active {
     align-items: center;
 }
 #log-buttons button {
-    flex-grow: 1; /* Makes buttons equal width */
-    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    flex-grow: 1;
+    box-sizing: border-box;
 }
 #mute-button {
     font-size: 1.5rem;
@@ -314,170 +308,18 @@ button.glow-active {
 .modal-body ul { list-style: none; padding: 0; }
 .modal-body li { background: #444; padding: 8px; border-radius: 4px; margin-bottom: 5px; }
 
-/* --- Media Queries for Tablet (up to 768px) --- */
-@media (max-width: 768px) {
-  /* Main layout adjustments */
-  .container {
-    margin: 10px;
-    padding: 10px;
-  }
-
-  /* Game layout and columns */
-  #game-layout {
-    flex-direction: column;
-    gap: 10px;
-  }
-  #current-player-card-column {
-    padding-top: 10px;
-  }
-  .featured-card {
-    width: 100%;
-    transform: scale(1);
-    margin-bottom: 10px;
-  }
-  
-  /* Dice adjustments */
-  .dice-row {
-    min-height: 70px;
-  }
-  .die {
-    width: 60px;
-    height: 60px;
-    margin: 4px;
-    box-shadow: 0 0 0 2px #c9a200, 0 0 0 3px #ffd700, 0 0 5px 1px rgba(255, 215, 0, 0.8), inset 0 0 10px rgba(0,0,0,0.6);
-  }
-  .pip {
-    width: 12px;
-    height: 12px;
-  }
-
-  /* Large dice variant for mobile */
-  .large-dice .die {
-    width: 75px;
-    height: 75px;
-  }
-  .large-dice .pip {
-    width: 15px;
-    height: 15px;
-  }
-  
-  /* Buttons and fonts */
-  button {
-    padding: 8px 12px;
-  }
-  #roll-button {
-    font-size: 16px;
-    padding: 10px 18px;
-  }
-  #category-buttons .button-row button {
-    flex: 1 1 45%;
-    margin: 2px;
-  }
-  #turn-title-display {
-    font-size: 1.8rem;
-    height: 30px;
-  }
-  
-  /* Scorecard adjustments */
-  #scorecard-container {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    padding-top: 10px;
-  }
-  .scorecard {
-    width: 90%;
-    margin: 5px;
-  }
-
-  /* Setup section adjustments */
-  #player-section {
-    padding: 15px;
-    max-width: 90%;
-  }
-  #jotzee-logo-setup,
-  #jotzee-logo-game {
-    max-width: 300px;
-  }
-}
-
-/* --- Media Queries for Phone (up to 480px) --- */
-@media (max-width: 480px) {
-  /* Hide other scorecards */
-  #scorecard-container {
-    display: none; /* Only show the featured card on phones */
-  }
-
-  /* Adjust game layout for phone to stack columns */
-  #game-layout {
-    flex-direction: column; /* Stack main game column and featured card column */
-    gap: 10px;
-    /* NEW: Center the content horizontally within the game-layout */
-    align-items: center;
-  }
-
-  /* Position current player's scorecard underneath the play area */
-  #current-player-card-column {
-    order: 2; /* Place current player card after the main game column */
-    width: 100%; /* Ensure it takes full width */
-    padding-top: 0; /* Remove top padding as it's now below */
-  }
-
-  #main-game-column {
-    order: 1; /* Place main game column first */
-    width: 100%;
-  }
-
-  .featured-card {
-    width: 95%; /* Adjust width for better fit on very small screens */
-    margin: 10px auto; /* Center the featured card */
-  }
-
-  /* Further reduce button sizes for very small screens */
-  button {
-    padding: 6px 10px;
-    font-size: 0.9rem;
-  }
-  #roll-button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-  #turn-title-display {
-    font-size: 1.5rem;
-    height: 25px;
-  }
-  .die {
-    width: 50px;
-    height: 50px;
-    margin: 3px;
-  }
-  .pip {
-    width: 10px;
-    height: 10px;
-  }
-  .large-dice .die {
-    width: 65px;
-    height: 65px;
-  }
-  .large-dice .pip {
-    width: 13px;
-    height: 13px;
-  }
-
-  #jotzee-logo-setup,
-  #jotzee-logo-game {
-    max-width: 250px;
-  }
-}
-
-/* NEW: Styles for the version display */
+/* --- Version Number --- */
 #version-display {
-    position: fixed; /* Position relative to the viewport */
-    bottom: 5px; /* 5px from the bottom */
-    right: 5px; /* 5px from the right */
-    font-size: 0.7em; /* Tiny font size */
-    color: black; /* Black color */
-    z-index: 1001; /* Ensure it's above other elements */
-    opacity: 0.6; /* Slightly transparent */
-    text-shadow: 0 0 2px rgba(255,255,255,0.5); /* Subtle white shadow for contrast */
+  position: fixed !important;
+  bottom: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+
+  color: #000 !important;                 /* black text */
+  background: rgba(255,255,255,0.8) !important;
+  font-size: 0.8rem !important;
+  font-weight: bold !important;
+  padding: 4px 8px !important;
+  border-radius: 5px !important;
+  z-index: 1001 !important;
 }

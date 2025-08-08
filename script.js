@@ -1,4 +1,4 @@
-const GAME_VERSION = "1.0.1"; // NEW: Define your game version here
+const GAME_VERSION = "1.0.2 8/8/25"; // NEW: Define your game version here
 
 let isMuted = false;
 let glowInterval;
