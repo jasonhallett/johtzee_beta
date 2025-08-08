@@ -8,6 +8,7 @@ function playSound(name) {
     return;
   }
   const map = {
+    "welcome": "sounds/welcome.mp3", // NEW: Add welcome sound
     "audio-dice-1": "sounds/dice-roll-1.mp3",
     "audio-dice-2": "sounds/dice-roll-2.mp3",
     "audio-dice-3": "sounds/dice-roll-3.mp3",
@@ -42,6 +43,21 @@ function cycleGlow() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+        // We will add the welcome sound to play on the first user interaction
+        let firstInteraction = true;
+        document.body.addEventListener('click', () => {
+            if (firstInteraction && !isMuted) {
+                playSound("welcome");
+                firstInteraction = false;
+            }
+        }, { once: true }); // Use { once: true } to ensure it only runs once
+
+        // NEW: Trigger the logo animation
+        const logoSetup = document.getElementById('jotzee-logo-setup');
+        if (logoSetup) {
+            logoSetup.classList.add('logo-animate-in');
+        }
+
         // NEW: Display the game version
         const versionDisplay = document.getElementById('version-display');
         if (versionDisplay) {

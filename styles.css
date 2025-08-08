@@ -42,6 +42,21 @@ html, body {
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
+/* NEW: Logo animation for setup screen */
+.logo-animate-in {
+    animation: logo-snap-in 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes logo-snap-in {
+    0% { transform: translateY(-200px); opacity: 0; box-shadow: 0 0 20px rgba(0,0,0,0.4); }
+    50% { transform: translateY(20px); opacity: 1; box-shadow: 0 0 20px rgba(0,0,0,0.4); }
+    75% { transform: translateY(-10px); box-shadow: 0 0 25px 5px #ffd700, 0 0 40px 10px #ff0; }
+    85% { box-shadow: 0 0 20px rgba(0,0,0,0.4); }
+    90% { box-shadow: 0 0 25px 5px #ffd700, 0 0 40px 10px #ff0; }
+    95% { box-shadow: 0 0 20px rgba(0,0,0,0.4); }
+    100% { transform: translateY(0); box-shadow: 0 0 25px 5px #ffd700, 0 0 40px 10px #ff0; }
+}
+
 /* --- Player Setup Styles --- */
 #setup-section {
     display: flex;
@@ -492,15 +507,19 @@ button.glow-active {
         font-size: 1rem;
         padding: 8px;
     }
+    
+    /* Adjust logo size to 75% for phones */
+    #jotzee-logo-setup, #jotzee-logo-game {
+        max-width: 75%;
+    }
 
-    /* Adjust featured card and scorecards to be 75% wider than previous */
-    .featured-card {
-      width: calc(100% * 1.75 * 0.9); /* Base width (90%) * 1.75 */
-      width: 90%; /* This is a cleaner approach to get a wider card */
+    /* Adjust featured card and scorecards to 85% width on phones */
+    .featured-card, .scorecard {
+      width: 85%; 
       margin: 15px auto;
     }
 
-    .scorecard {
-      width: 90%;
+    #scorecard-container {
+      flex-direction: column; /* Stack all scorecards vertically */
     }
 }
