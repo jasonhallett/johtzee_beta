@@ -24,7 +24,7 @@ html, body {
 
 #johtzee-logo-setup, #johtzee-logo-game {
     width: 100%;
-    max-width: 450px;
+    max-width: 450px; /* This is your default size for desktop */
     height: auto;
     display: block;
     margin: 0 auto 15px;
@@ -510,7 +510,7 @@ button.glow-active {
 /* Desktop Layout: (992px+) */
 @media (min-width: 992px) {
   #johtzee-logo-setup, #johtzee-logo-game {
-    max-width: 65%; /* This is the fix to make the logo smaller on desktops */
+    /* max-width: 65%; /* This is the fix to make the logo smaller on desktops */
   }
 
   /* Game layout remains two columns */
