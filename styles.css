@@ -22,17 +22,7 @@ html, body {
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.5);
 }
 
-#jotzee-logo-setup {
-  width: 100%;
-  max-width: 450px;
-  height: auto;
-  display: block;
-  margin: 0 auto 15px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-}
-
-#jotzee-logo-game {
+#jotzee-logo-setup, #jotzee-logo-game {
     width: 100%;
     max-width: 450px;
     height: auto;
@@ -63,12 +53,12 @@ html, body {
     justify-content: center;
     align-items: center;
     padding: 40px 0;
-    min-height: 80vh; /* This will help center the content vertically */
+    min-height: 80vh;
     box-sizing: border-box;
 }
 
 #player-section {
-    background: inherit; /* Match container background */
+    background: inherit;
     border: none;
     border-radius: 10px;
     padding: 25px;
@@ -100,7 +90,6 @@ html, body {
     font-size: 1.1rem;
 }
 
-/* New delete button styling to look like a die */
 .delete-dice-button {
   background: linear-gradient(135deg, #b22222 0%, #8b0000 50%, #b22222 100%) !important;
   box-shadow: 
@@ -141,13 +130,6 @@ html, body {
     color: #ffd700;
     text-shadow: 0 0 5px #000;
 }
-
-
-/* Old style for player list item button is removed to use the new one. */
-.player-list-item button {
-    /* Removed old styles */
-}
-
 
 /* --- Layouts --- */
 #game-layout { display: flex; gap: 20px; align-items: flex-start; }
@@ -228,7 +210,6 @@ input { padding: 8px; border-radius: 6px; border: 1px solid #aaa; background: #3
     80% { transform: translateY(5px) scale(1.05); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
 }
-
 
 /* --- Dice --- */
 .dice-row { display: flex; justify-content: center; margin: 20px 0; min-height: 90px; align-items: center; }
@@ -376,7 +357,7 @@ button.glow-active {
   right: 10px !important;
   left: auto !important;
 
-  color: #000 !important;                 /* black text */
+  color: #000 !important;
   background: rgba(255,255,255,0.8) !important;
   font-size: 0.8rem !important;
   font-weight: bold !important;
@@ -385,10 +366,57 @@ button.glow-active {
   z-index: 1001 !important;
 }
 
-/* --- Responsive Layout for Mobile Phones & Tablets --- */
+/* --- Responsive Layout for Mobile Phones, Tablets & Desktops --- */
 
-/* Tablet Layout: Targets devices like iPads (<= 768px) */
-@media (max-width: 768px) {
+/* Phone Layout: Targets devices <= 540px */
+@media (max-width: 540px) {
+  #setup-section {
+    padding: 0;
+  }
+  .container, #player-section {
+    max-width: 95%;
+    width: 95%;
+    margin: 10px auto;
+    padding: 15px;
+  }
+  
+  #jotzee-logo-setup, #jotzee-logo-game {
+    max-width: 65%;
+  }
+
+  #game-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #main-game-column { order: 1; width: 100%; }
+  #current-player-card-column { order: 2; padding-top: 0; width: 100%; }
+  
+  #scorecard-container {
+    flex-direction: column;
+    align-items: center;
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+  
+  .featured-card, .scorecard {
+    width: 85vw;
+    margin: 10px auto;
+  }
+  
+  #log-buttons { flex-direction: column; }
+  
+  .player-list-item { font-size: 1rem; padding: 8px; }
+  #turn-title-display { font-size: 1.8rem; height: auto; }
+  button { font-size: 0.9rem; padding: 8px 12px; }
+  #roll-button { font-size: 1.2rem; }
+  .die { width: 50px; height: 50px; }
+  .pip { width: 12px; height: 12px; }
+}
+
+/* Small Tablet Layout: Targets devices like iPads (541px - 768px) */
+@media (min-width: 541px) and (max-width: 768px) {
   .container {
     margin: 10px;
     padding: 10px;
@@ -401,89 +429,114 @@ button.glow-active {
   }
 
   #jotzee-logo-setup, #jotzee-logo-game {
-    max-width: 65%; /* UPDATED LOGO SIZE */
+    max-width: 75%;
   }
 
-  /* Game UI adjustments */
   #game-layout {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
   }
   
   #main-game-column {
-    order: 1; /* Main game area comes first */
-    width: 100%;
+    flex: 2; 
+    width: auto;
   }
 
   #current-player-card-column {
-    order: 2; /* Featured card comes second */
-    padding-top: 0;
-    width: 100%;
+    flex: 1;
+    padding-top: 20px;
+    width: auto;
   }
   
   .featured-card {
-    width: 90%; /* Featured card is slightly larger on tablets */
-    margin: 20px auto;
+    width: 320px;
+    margin-bottom: 20px;
   }
 
   #scorecard-container {
-    border-top: none; /* Remove the separator line */
+    border-top: none; 
     padding-top: 0;
     margin-top: 0;
     display: flex;
-    flex-direction: row; /* Ensure scorecards are side-by-side */
+    flex-direction: row; 
     flex-wrap: wrap;
     justify-content: center;
   }
   
   .scorecard {
-    width: calc(50% - 22px); /* Two scorecards per row on tablets */
+    width: calc(50% - 22px);
   }
 
-  /* Dice and buttons scaling */
   .dice-row { margin: 10px 0; }
   #turn-title-display { font-size: 1.8rem; height: auto; }
   button { font-size: 0.9rem; padding: 8px 12px; }
   #roll-button { font-size: 1.2rem; }
-  .die { width: 50px; height: 50px; }
-  .pip { width: 12px; height: 12px; }
+  .die { width: 60px; height: 60px; }
+  .pip { width: 14px; height: 14px; }
 }
 
-/* Phone Layout: Targets iPhones and other small devices (<= 540px) */
-@media (max-width: 540px) {
-  #setup-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
+/* Large Tablet Layout: Targets devices like iPads Pro (769px - 991px) */
+@media (min-width: 769px) and (max-width: 991px) {
+  #jotzee-logo-setup, #jotzee-logo-game {
+    max-width: 75%; /* Set logo size for large tablets */
   }
 
-  .container, #player-section {
-    max-width: 95%;
-    width: 95%;
-    margin: 10px auto;
-    padding: 15px;
+  /* Game layout remains two columns */
+  #game-layout {
+    flex-direction: row;
+    align-items: flex-start;
   }
   
-  .player-list-item {
-      font-size: 1rem;
-      padding: 8px;
+  #main-game-column { flex: 2; }
+  #current-player-card-column { 
+    flex: 1; 
+    padding-top: 20px;
   }
 
-  /* On phones, stack all scorecards vertically and make them wider */
+  .featured-card {
+    width: 320px;
+  }
+
   #scorecard-container {
-    flex-direction: column;
-    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .scorecard {
+    width: 220px;
+  }
+}
+
+/* Desktop Layout: (992px+) */
+@media (min-width: 992px) {
+  #jotzee-logo-setup, #jotzee-logo-game {
+    max-width: 450px; /* Default size for desktops */
   }
 
-  /* THIS IS THE KEY FIX: Make scorecards much wider on phones */
-  .featured-card, .scorecard {
-    width: 95%; /* Use almost the full width of the container */
-    margin: 10px auto;
+  /* Game layout remains two columns */
+  #game-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  #main-game-column { flex: 2; }
+  #current-player-card-column { 
+    flex: 1; 
+    padding-top: 20px;
   }
 
-  #log-buttons {
-    flex-direction: column; /* Stack log buttons vertically */
+  .featured-card {
+    width: 320px;
+  }
+
+  #scorecard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .scorecard {
+    width: 220px;
   }
 }
