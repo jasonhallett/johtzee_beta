@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { once: true }); // Use { once: true } to ensure it only runs once
 
         // NEW: Trigger the logo animation
-        const logoSetup = document.getElementById('jotzee-logo-setup');
+        const logoSetup = document.getElementById('johtzee-logo-setup');
         if (logoSetup) {
             logoSetup.classList.add('logo-animate-in');
         }
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const categories = [ "Ones","Twos","Threes","Fours","Fives","Sixes","3 of a Kind","4 of a Kind","Full House","Small Straight","Large Straight","Johtzee","Chance" ];
-        const AI_NAMES = [ "Ace Andy", "All-in Alice", "Action Alan", "Ante Annie", "Arctic Archie", "Blackjack Billy", "Bonus Bobby", "Baccarat Becky", "Big Bet Ben", "Blazing Brenda", "Casino Carl", "Cashout Cathy", "Craps Craig", "Cardsharp Carla", "Chip Charlie", "Dealer Dave", "Double-down Dana", "Dicey Diana", "Diamond Doug", "Draw Derek", "Eightball Eddie", "Emerald Emma", "Even-Money Eva", "Encore Eric", "Easy Ed", "Flush Frank", "Fullhouse Fiona", "Five-card Fred", "Fast Fingers Frances", "Fortune Faith", "Gamble Gary", "Golden Gloria", "Go-for-it Greg", "Grandstand Gina", "Glitter Gus", "Highroller Hank", "Hotshot Holly", "House Howard", "High-Stakes Hannah", "Hardway Harry", "Inside Izzy", "Instant-Income Irene", "Icy Ivan", "Incredible Ingrid", "Insurance Ian", "Jackpot Jack", "Jotzee Jason", "Joker Joe", "Jinxed Jenny", "Jackpot Jill", "Keno Ken", "Kingpin Kim", "Keep-Betting Kevin", "Krupier Kyle", "Kitty Kat Kelsey", "Lucky Larry", "Lounge Liz", "Lowball Louie", "Loaded Lola", "Last-Call Lance", "Money Mike", "Marker Mary", "Midnight Molly", "Mirage Max", "Mega Millions Mandy", "No-Limit Nick", "Neon Nancy", "Nudge Nate", "Nightcap Nina", "Number Nine Norman", "Odds-On Oscar", "Open-Table Olivia", "Outlaw Owen", "Onyx Opal", "One-More-Spin Omar", "Pitboss Pete", "Payout Patty", "Pair Paul", "Pokerface Penny", "Push Patrick", "Quick-Draw Quinn", "Queenie Quinn", "Quarter-Bet Quentin", "Quiet Quinton", "Quads Quentin", "Roulette Rita", "Risky Ricky", "Raise Rachel", "River Ron", "Royal Flush Rosa", "Slots Sally", "Snake-Eyes Sam", "Showdown Shelly", "Shuffle Shane", "Streaky Steve", "Texas Terry", "Tabletop Tina", "Triple-Trey Trevor", "Turn-Card Tanya", "Tip-Taker Tom", "Upcard Ursula", "Uptown Ulysses", "Under-the-Gun Uma", "Unlucky Ulrich", "Uno Ursula", "Vegas Virginia", "Velvet Vince", "VLT Veronica", "VIP Victor", "Voodoo Valerie", "Wildcard Walter", "Win-it Wendy", "Whales William", "Wheelspin Wanda", "Wager Wade", "Xtra-Chips Xavier", "Xtreme Xena", "Xcuse-Me Xander", "Xo-Xo Xavier", "Xit-the-Table Ximena", "Yo-Eleven Yvonne", "Yardage Yanni", "Youngblood Yuri", "Yolo Yolanda", "Yachtclub Yvette", "Zero-Zero Zack", "Zigzag Zelda", "Zillionaire Zoe", "Zipline Zane", "Zesty Zora" ];
+        const AI_NAMES = [ "Ace Andy", "All-in Alice", "Action Alan", "Ante Annie", "Arctic Archie", "Blackjack Billy", "Bonus Bobby", "Baccarat Becky", "Big Bet Ben", "Blazing Brenda", "Casino Carl", "Cashout Cathy", "Craps Craig", "Cardsharp Carla", "Chip Charlie", "Dealer Dave", "Double-down Dana", "Dicey Diana", "Diamond Doug", "Draw Derek", "Eightball Eddie", "Emerald Emma", "Even-Money Eva", "Encore Eric", "Easy Ed", "Flush Frank", "Fullhouse Fiona", "Five-card Fred", "Fast Fingers Frances", "Fortune Faith", "Gamble Gary", "Golden Gloria", "Go-for-it Greg", "Grandstand Gina", "Glitter Gus", "Highroller Hank", "Hotshot Holly", "House Howard", "High-Stakes Hannah", "Hardway Harry", "Inside Izzy", "Instant-Income Irene", "Icy Ivan", "Incredible Ingrid", "Insurance Ian", "Jackpot Jack", "Johtzee Jason", "Joker Joe", "Jinxed Jenny", "Jackpot Jill", "Keno Ken", "Kingpin Kim", "Keep-Betting Kevin", "Krupier Kyle", "Kitty Kat Kelsey", "Lucky Larry", "Lounge Liz", "Lowball Louie", "Loaded Lola", "Last-Call Lance", "Money Mike", "Marker Mary", "Midnight Molly", "Mirage Max", "Mega Millions Mandy", "No-Limit Nick", "Neon Nancy", "Nudge Nate", "Nightcap Nina", "Number Nine Norman", "Odds-On Oscar", "Open-Table Olivia", "Outlaw Owen", "Onyx Opal", "One-More-Spin Omar", "Pitboss Pete", "Payout Patty", "Pair Paul", "Pokerface Penny", "Push Patrick", "Quick-Draw Quinn", "Queenie Quinn", "Quarter-Bet Quentin", "Quiet Quinton", "Quads Quentin", "Roulette Rita", "Risky Ricky", "Raise Rachel", "River Ron", "Royal Flush Rosa", "Slots Sally", "Snake-Eyes Sam", "Showdown Shelly", "Shuffle Shane", "Streaky Steve", "Texas Terry", "Tabletop Tina", "Triple-Trey Trevor", "Turn-Card Tanya", "Tip-Taker Tom", "Upcard Ursula", "Uptown Ulysses", "Under-the-Gun Uma", "Unlucky Ulrich", "Uno Ursula", "Vegas Virginia", "Velvet Vince", "VLT Veronica", "VIP Victor", "Voodoo Valerie", "Wildcard Walter", "Win-it Wendy", "Whales William", "Wheelspin Wanda", "Wager Wade", "Xtra-Chips Xavier", "Xtreme Xena", "Xcuse-Me Xander", "Xo-Xo Xavier", "Xit-the-Table Ximena", "Yo-Eleven Yvonne", "Yardage Yanni", "Youngblood Yuri", "Yolo Yolanda", "Yachtclub Yvette", "Zero-Zero Zack", "Zigzag Zelda", "Zillionaire Zoe", "Zipline Zane", "Zesty Zora" ];
         const pipPositions = { 1: [[50, 50]], 2: [[25, 25], [75, 75]], 3: [[25, 25], [50, 50], [75, 75]], 4: [[25, 25], [25, 75], [75, 25], [75, 75]], 5: [[25, 25], [25, 75], [75, 25], [75, 75], [50, 50]], 6: [[25, 25], [25, 75], [75, 25], [75, 75], [50, 25], [50, 75]] };
         let players = [];
         let gameHistory = [];
@@ -77,10 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
         let rolling = false;
         let johtzeeCelebratedThisTurn = false;
         
-        const jotzeeLogoSetup = document.getElementById('jotzee-logo-setup');
-        const jotzeeLogoGame = document.getElementById('jotzee-logo-game');
+        const johtzeeLogoSetup = document.getElementById('johtzee-logo-setup');
+        const johtzeeLogoGame = document.getElementById('johtzee-logo-game');
         
-        if (jotzeeLogoGame) jotzeeLogoGame.style.display = 'none';
+        if (johtzeeLogoGame) johtzeeLogoGame.style.display = 'none';
         
         const muteButton = document.getElementById('mute-button');
         
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const isJohtzee = d => d.length === 5 && d[0] > 0 && Object.values(countValues(d)).includes(5);
 
         // const playSound = id => { const el = $(`#${id}`); if (el) { el.currentTime = 0; el.play().catch(() => {}); } };
-        // const showJotzeeBanner = () => { };
+        // const showJohtzeeBanner = () => { };
 
         function openModal(title, contentHTML, showGameButtons = false) {
             $("#modal-title").textContent = title;
@@ -341,12 +341,12 @@ document.addEventListener("DOMContentLoaded", () => {
             $(".container").style.maxWidth = '1200px';
             
             // Hide the logo on the setup screen
-            if (jotzeeLogoSetup) {
-                jotzeeLogoSetup.style.display = 'none';
+            if (johtzeeLogoSetup) {
+                johtzeeLogoSetup.style.display = 'none';
             }
             // Show the logo on the game screen
-            if (jotzeeLogoGame) {
-                jotzeeLogoGame.style.display = 'block';
+            if (johtzeeLogoGame) {
+                johtzeeLogoGame.style.display = 'block';
             }
 
             players.forEach(p => { p.scores = {}; p.usedCategories = new Set(); p.johtzeeBonusCount = 0; });
@@ -509,11 +509,11 @@ function rollDice() {
             $(".container").style.maxWidth = '540px'; 
             
             // Hide the logo on the game screen and show on setup
-            if (jotzeeLogoGame) {
-                jotzeeLogoGame.style.display = 'none';
+            if (johtzeeLogoGame) {
+                johtzeeLogoGame.style.display = 'none';
             }
-            if (jotzeeLogoSetup) {
-                jotzeeLogoSetup.style.display = 'block';
+            if (johtzeeLogoSetup) {
+                johtzeeLogoSetup.style.display = 'block';
             }
 
             players = [];

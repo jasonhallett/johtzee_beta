@@ -22,7 +22,7 @@ html, body {
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.5);
 }
 
-#jotzee-logo-setup, #jotzee-logo-game {
+#johtzee-logo-setup, #johtzee-logo-game {
     width: 100%;
     max-width: 450px;
     height: auto;
@@ -380,7 +380,7 @@ button.glow-active {
     padding: 15px;
   }
   
-  #jotzee-logo-setup, #jotzee-logo-game {
+  #johtzee-logo-setup, #johtzee-logo-game {
     max-width: 65%;
   }
 
@@ -428,7 +428,7 @@ button.glow-active {
     text-align: center;
   }
 
-  #jotzee-logo-setup, #jotzee-logo-game {
+  #johtzee-logo-setup, #johtzee-logo-game {
     max-width: 75%;
   }
 
@@ -477,7 +477,7 @@ button.glow-active {
 
 /* Large Tablet Layout: Targets devices like iPads Pro (769px - 991px) */
 @media (min-width: 769px) and (max-width: 991px) {
-  #jotzee-logo-setup, #jotzee-logo-game {
+  #johtzee-logo-setup, #johtzee-logo-game {
     max-width: 75%; /* Set logo size for large tablets */
   }
 
@@ -510,7 +510,7 @@ button.glow-active {
 
 /* Desktop Layout: (992px+) */
 @media (min-width: 992px) {
-  #jotzee-logo-setup, #jotzee-logo-game {
+  #johtzee-logo-setup, #johtzee-logo-game {
     max-width: 450px; /* Default size for desktops */
   }
 
