@@ -349,6 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 johtzeeLogoGame.style.display = 'block';
             }
 
+            
             players.forEach(p => { p.scores = {}; p.usedCategories = new Set(); p.johtzeeBonusCount = 0; });
             currentPlayerIndex = 0;
             $("#history-log").innerHTML = "";
