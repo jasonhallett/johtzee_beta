@@ -1,4 +1,3 @@
-const GAME_VERSION = "1.0.4.2 8/8/25"; // NEW: Define your game version here
 
 let isMuted = false;
 let glowInterval;

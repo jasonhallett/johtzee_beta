@@ -212,18 +212,15 @@ input { padding: 8px; border-radius: 6px; border: 1px solid #aaa; background: #3
 }
 
 /* --- Dice --- */
-.dice-row { display: flex; justify-content: center; margin: 20px 0; min-height: 90px; align-items: center; }
+.dice-row { display: flex; justify-content: center; gap: 20px; margin: 20px 0; min-height: 90px; align-items: center; }
 
 .die {
-  width: 70px; height: 70px; margin: 8px; border-radius: 10px; position: relative; cursor: pointer;
+  width: 70px; height: 70px; border-radius: 10px; position: relative; cursor: pointer;
   background: linear-gradient(135deg, #b22222 0%, #8b0000 50%, #b22222 100%);
   box-shadow: 
-    0 0 0 2px #c9a200,
-    0 0 0 4px #ffd700,
-    0 0 10px 1px rgba(255, 215, 0, 0.8),
-    inset 0 0 15px rgba(0,0,0,0.6),
-    inset 0 8px 10px rgba(255,255,255,0.4),
-    inset 0 -8px 10px rgba(0,0,0,0.4);
+    inset 2px 2px 5px rgba(255,255,255,0.4), /* Top-left highlight for bevel */
+    inset -2px -2px 5px rgba(0,0,0,0.6), /* Bottom-right shadow for bevel */
+    0 4px 6px rgba(0,0,0,0.3); /* Subtle drop shadow for depth */
   border: none;
   transition: all 0.2s ease-out;
 }
@@ -244,9 +241,11 @@ input { padding: 8px; border-radius: 6px; border: 1px solid #aaa; background: #3
 .die.held {
   transform: translateY(-5px) scale(1.05); 
   box-shadow: 
-    0 0 0 2px #c9a200, 
-    0 0 0 4px #ffd700, 
-    0 0 25px 8px #ffd700, 0 0 40px 15px #ff0,
+    0 0 0 2px #c9a200,
+    0 0 0 4px #ffd700,
+    0 0 10px 4px #ffeb99, /* Inner, bright glow */
+    0 0 15px 7px #ffd700, /* Middle, softer glow */
+    0 0 25px 10px rgba(255, 255, 150, 0.8), /* Farthest, lightest glow */
     inset 0 -3px 5px rgba(0,0,0,0.4), 
     inset 0 4px 5px rgba(255,255,255,0.3);
 }
@@ -429,7 +428,7 @@ button.glow-active {
   }
 
   #johtzee-logo-setup, #johtzee-logo-game {
-    max-width: 75%;
+    max-width: 65%;
   }
 
   #game-layout {
@@ -478,7 +477,7 @@ button.glow-active {
 /* Large Tablet Layout: Targets devices like iPads Pro (769px - 991px) */
 @media (min-width: 769px) and (max-width: 991px) {
   #johtzee-logo-setup, #johtzee-logo-game {
-    max-width: 75%; /* Set logo size for large tablets */
+    max-width: 65%;
   }
 
   /* Game layout remains two columns */
@@ -511,7 +510,7 @@ button.glow-active {
 /* Desktop Layout: (992px+) */
 @media (min-width: 992px) {
   #johtzee-logo-setup, #johtzee-logo-game {
-    max-width: 450px; /* Default size for desktops */
+    max-width: 65%; /* This is the fix to make the logo smaller on desktops */
   }
 
   /* Game layout remains two columns */
