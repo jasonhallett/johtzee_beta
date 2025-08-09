@@ -1,6 +1,14 @@
 /* --- General Setup & Vegas Theme --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+/* NEW: Universal box-sizing for predictable layouts */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -37,15 +45,52 @@ html, body {
     animation: logo-snap-in 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* FINAL VERSION: Logo animation with snap and inner/outer glow */
 @keyframes logo-snap-in {
-    0% { transform: translateY(-200px); opacity: 0; box-shadow: 0 0 20px rgba(0,0,0,0.4); }
-    50% { transform: translateY(20px); opacity: 1; box-shadow: 0 0 20px rgba(0,0,0,0.4); }
-    75% { transform: translateY(-10px); box-shadow: 0 0 25px 5px #ffd700, 0 0 40px 10px #ff0; }
-    85% { box-shadow: 0 0 20px rgba(0,0,0,0.4); }
-    90% { box-shadow: 0 0 25px 5px #ffd700, 0 0 40px 10px #ff0; }
-    95% { box-shadow: 0 0 20px rgba(0,0,0,0.4); }
-    100% { transform: translateY(0); box-shadow: 0 0 25px 5px #ffd700, 0 0 40px 10px #ff0; }
+    /* Stage 1: The logo drops from above. */
+    0% {
+        transform: translateY(-250px) scale(0.8);
+        opacity: 0;
+        box-shadow: none;
+    }
+    
+    /* Stage 2: It lands, overshoots for a bounce, and a base glow appears. */
+    60% {
+        transform: translateY(10px) scale(1.05); 
+        opacity: 1;
+        box-shadow:
+            0 0 15px 7px #ffd700,
+            inset 0 0 15px 5px rgba(255, 240, 150, 0.7);
+    }
+
+    /* Stage 3: The "snap" begins. The logo pops larger while the glow pulses to its brightest. */
+    85% {
+        transform: translateY(0) scale(1.1); /* The logo "pops" larger */
+        box-shadow:
+            /* Outer Glow */
+            0 0 0 2px #c9a200,
+            0 0 0 4px #ffd700,
+            0 0 20px 10px #ffeb99,
+            0 0 35px 18px rgba(255, 215, 0, 0.8),
+            /* Enhanced Inner Glow */
+            inset 0 0 20px 8px rgba(255, 240, 150, 0.8);
+    }
+    
+    /* Stage 4: The logo settles to its final size and the glow stabilizes. */
+    100% {
+        transform: translateY(0) scale(1); /* It settles back to normal size */
+        opacity: 1;
+        box-shadow:
+            /* Outer Glow */
+            0 0 0 2px #c9a200,
+            0 0 0 4px #ffd700,
+            0 0 15px 7px #ffd700,
+            0 0 25px 10px rgba(255, 255, 150, 0.8),
+            /* Final, larger Inner Glow */
+            inset 0 0 25px 12px rgba(255, 240, 150, 0.9);
+    }
 }
+
 
 /* --- Player Setup Styles --- */
 #setup-section {
@@ -54,7 +99,6 @@ html, body {
     align-items: center;
     padding: 40px 0;
     min-height: 80vh;
-    box-sizing: border-box;
 }
 
 #player-section {
@@ -311,7 +355,6 @@ button.glow-active {
 }
 #log-buttons button {
     flex-grow: 1;
-    box-sizing: border-box;
 }
 #mute-button {
     font-size: 1.5rem;
@@ -369,14 +412,22 @@ button.glow-active {
 
 /* Phone Layout: Targets devices <= 540px */
 @media (max-width: 540px) {
-  #setup-section {
-    padding: 0;
+  /* FIX: Make container full-width to prevent horizontal scrolling */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px;
+    border-radius: 0;
+    border: none;
+    min-height: 100vh;
   }
-  .container, #player-section {
-    max-width: 95%;
-    width: 95%;
-    margin: 10px auto;
-    padding: 15px;
+  #setup-section {
+    padding: 10px 0;
+    min-height: initial;
+  }
+  #player-section {
+    padding: 0;
   }
   
   #johtzee-logo-setup, #johtzee-logo-game {
@@ -400,7 +451,7 @@ button.glow-active {
   }
   
   .featured-card, .scorecard {
-    width: 85vw;
+    width: 90vw; /* Adjusted for new container */
     margin: 10px auto;
   }
   
@@ -427,8 +478,12 @@ button.glow-active {
     text-align: center;
   }
 
-  #johtzee-logo-setup, #johtzee-logo-game {
+  /* FIX: Adjust logo sizes independently for consistent look */
+  #johtzee-logo-setup {
     max-width: 65%;
+  }
+  #johtzee-logo-game {
+    max-width: 65%; /* Makes the game logo fill more of its column */
   }
 
   #game-layout {
@@ -476,8 +531,12 @@ button.glow-active {
 
 /* Large Tablet Layout: Targets devices like iPads Pro (769px - 991px) */
 @media (min-width: 769px) and (max-width: 991px) {
-  #johtzee-logo-setup, #johtzee-logo-game {
+  /* FIX: Adjust logo sizes independently for consistent look */
+  #johtzee-logo-setup {
     max-width: 65%;
+  }
+  #johtzee-logo-game {
+    max-width: 65%; /* Makes the game logo fill more of its column */
   }
 
   /* Game layout remains two columns */

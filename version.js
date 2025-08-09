@@ -1,7 +1,7 @@
 // version.js
 // This file stores the game version and release notes.
 
-const GAME_VERSION = "1.0.5.1";
+const GAME_VERSION = "1.0.5";
 
 /*
   Release Notes for v1.0.5:
