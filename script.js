@@ -44,7 +44,8 @@ function cycleGlow() {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-// === SHAKE TO ROLL (self-contained) ===
+
+/*
 let _shakeListenerAdded = false;
 const SHAKE_THRESHOLD = 18;      // sensitivity (higher = less sensitive). Tweak 15–22 as needed.
 const SHAKE_COOLDOWN_MS = 1000;  // min gap between shake triggers
@@ -94,7 +95,7 @@ function startShakeListenerOnce() {
   window.addEventListener("devicemotion", _onDeviceMotion, { passive: true });
   _shakeListenerAdded = true;
 }
-
+*/
         // We will add the welcome sound to play on the first user interaction
         let firstInteraction = true;
         document.body.addEventListener('click', async () => {
@@ -102,7 +103,7 @@ function startShakeListenerOnce() {
         playSound("welcome");
     }
 
-    // iOS requires a user gesture to allow motion sensors
+    /* iOS requires a user gesture to allow motion sensors
     try {
         if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
             const resp = await DeviceMotionEvent.requestPermission();
@@ -114,7 +115,7 @@ function startShakeListenerOnce() {
     } catch (_) {
         // If permission prompt fails, we simply skip shake; no crash
     }
-
+*/
     firstInteraction = false;
 }, { once: true });
 
