@@ -97,12 +97,27 @@ function startShakeListenerOnce() {
 
         // We will add the welcome sound to play on the first user interaction
         let firstInteraction = true;
-        document.body.addEventListener('click', () => {
-            if (firstInteraction && !isMuted) {
-                playSound("welcome");
-                firstInteraction = false;
-            }
-        }, { once: true }); // Use { once: true } to ensure it only runs once
+        document.body.addEventListener('click', async () => {
+    if (firstInteraction && !isMuted) {
+        playSound("welcome");
+    }
+
+    // iOS requires a user gesture to allow motion sensors
+    try {
+        if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
+            const resp = await DeviceMotionEvent.requestPermission();
+            if (resp === "granted") startShakeListenerOnce();
+        } else {
+            // Android/most browsers don't need an explicit permission call
+            startShakeListenerOnce();
+        }
+    } catch (_) {
+        // If permission prompt fails, we simply skip shake; no crash
+    }
+
+    firstInteraction = false;
+}, { once: true });
+
 
         // NEW: Trigger the logo animation
         const logoSetup = document.getElementById('johtzee-logo-setup');
