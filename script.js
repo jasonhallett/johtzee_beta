@@ -43,6 +43,58 @@ function cycleGlow() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
+// === SHAKE TO ROLL (self-contained) ===
+let _shakeListenerAdded = false;
+const SHAKE_THRESHOLD = 18;      // sensitivity (higher = less sensitive). Tweak 15–22 as needed.
+const SHAKE_COOLDOWN_MS = 1000;  // min gap between shake triggers
+
+let _lastX = null, _lastY = null, _lastZ = null;
+let _lastShakeAt = 0;
+
+function _canShakeTrigger() {
+  const btn = $("#roll-button");
+  const isHumanTurn = players[currentPlayerIndex] && !players[currentPlayerIndex].isAI;
+  return (
+    btn &&
+    btn.style.display !== "none" &&
+    !btn.disabled &&
+    !rolling &&
+    rollCount < 3 &&
+    isHumanTurn
+  );
+}
+
+function _onDeviceMotion(e) {
+  const acc = e.accelerationIncludingGravity || e.acceleration;
+  if (!acc) return;
+
+  const { x = 0, y = 0, z = 0 } = acc;
+
+  if (_lastX === null) {
+    _lastX = x; _lastY = y; _lastZ = z;
+    return;
+  }
+
+  // simple shake heuristic: sum of axis deltas
+  const delta = Math.abs(x - _lastX) + Math.abs(y - _lastY) + Math.abs(z - _lastZ);
+
+  _lastX = x; _lastY = y; _lastZ = z;
+
+  const now = Date.now();
+  if (delta > SHAKE_THRESHOLD && now - _lastShakeAt > SHAKE_COOLDOWN_MS && _canShakeTrigger()) {
+    _lastShakeAt = now;
+    // Click the existing roll button so we reuse your current flow
+    $("#roll-button").click();
+  }
+}
+
+function startShakeListenerOnce() {
+  if (_shakeListenerAdded) return;
+  window.addEventListener("devicemotion", _onDeviceMotion, { passive: true });
+  _shakeListenerAdded = true;
+}
+
         // We will add the welcome sound to play on the first user interaction
         let firstInteraction = true;
         document.body.addEventListener('click', () => {
